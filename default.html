@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Pagamentos Studio Corpo Livre</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular-route.min.js"></script> 
+    <script src="angular/app.js"></script>
+    <script src="angular/services/stateService.js"></script>
+    <script src="angular/controllers/index.js"></script>
+    <script src="angular/controllers/list.js"></script>
+   
+    
+
+  </head>
+  <body ng-app="studioPayment">
+    <div class="container">
+      <div class="row text-center">
+        <h1>Pagamentos Studio Corpo Livre</h1>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row" ng-controller="indexController">
+        <div ng-show="showState.main">
+          <div class="col-sm-4 text-center" ng-repeat="gym in gyms" >
+            <button class="btn btn-default btn-lg" type="button" ng-click="openList(gym)">{{gym.name}}</button>
+          </div>
+        </div>
+        <div ng-show="showState.list">
+            <div class="row">
+              <div class="col-md-6 text-left"><h2>{{dataState.gym.name}}</h2><button class="btn btn-success" type="button" ng-click="printData()">Imprimir</button></div>
+            </div>
+            <div class="row">
+              <div class="col-md-3"><input type="checkbox" ng-click="toggleCheck()" /></div>
+              <div class="col-md-3">&nbsp;</div>
+              <div class="col-md-3">&nbsp;</div>
+              <div class="col-md-3">&nbsp;</div>
+            </div>
+            <div class="row" ng-repeat="func in funcionarios">
+                <div class="col-md-3"><input type="checkbox" ng-model="func.selected" /></div>
+                <div class="col-md-3">{{func.nome}}</div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 text-right">{{func.total|number: 2}}</div>
+              </div>
+        </div>
+        <div ng-show="showState.print">
+          <div class="row">
+            <div class="col-md-6 text-left"><h2>{{dataState.gym.name}}</h2><button class="btn btn-success" type="button">Imprimir</button></div>
+            </div>
+          <div class="row" id="divPrint">
+            <div class="row" ng-repeat="func in funcionarios">
+              <table style="width:50%">
+                <tr>
+                  <td>Nome:</td>
+                  <td>{{func.nome}}</td>
+                </tr>
+                <tr>
+                  <td>Valor:</td>
+                  <td>{{func.valor}}</td>
+                </tr>
+                <tr>
+                  <td>Nr. Aulas:</td>
+                  <td>{{func.numeroaulas}}</td>
+                </tr>
+                <tr>
+                  <td>DSR:</td>
+                  <td>{{func.dsr}}</td>
+                </tr>
+                <tr>
+                  <td>INSS:</td>
+                  <td>{{func.inss}}</td>
+                </tr>
+                <tr>
+                  <td>Vale:</td>
+                  <td>{{func.vale}}</td>
+                </tr>
+                <tr>
+                  <td>Extra:</td>
+                  <td>{{func.extra}}</td>
+                </tr>
+                <tr>
+                  <td>V. Trans:</td>
+                  <td>{{func.transporte}}</td>
+                </tr>
+                <tr style="font-weight: bold">
+                  <td>Total:</td>
+                  <td>{{func.total}}</td>
+                </tr>
+                <tr><td>&nbsp;</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
