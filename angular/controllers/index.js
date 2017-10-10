@@ -9,8 +9,8 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
         }
         
         $scope.gyms = [{name:"Iguaçu", key: '1YSS4rOv5Lw3ScUxRyjXq4xK2GsUZ-KC_vZfF3yw07z0'}, 
-        {name: "Metropolitan", key: ''}, 
-        {name: "Água Verde", key: ''}];
+        {name: "Metropolitan", key: '1RGsWfmvQ60dEHBS1KUSD8MwlWP-WiSc20FFNhX9SgdM'}, 
+        {name: "Água Verde", key: '1SNBxj5gwAJda1ZnWz9bObh3JP0Nu1B7sjobhEea0Wes'}];
 
         $scope.goHome = function() {
             $scope.funcionarios = [];

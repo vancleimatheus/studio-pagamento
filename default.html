@@ -25,10 +25,19 @@
 
       .silverRow {
         background-color: #dedede;
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
 
       .whiteRow {
         background-color: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      .biggerCheckbox {
+        width: 20px;
+        height: 20px;
       }
     </style>
 
@@ -74,7 +83,7 @@
               <div class="col-md-1">&nbsp;</div>
             </div>
             <div class="row">
-              <div class="col-md-12"><input type="checkbox" ng-click="toggleCheck()" /> Marcar/Desmarcar todos</div>
+              <div class="col-md-12"><input type="checkbox" class="biggerCheckbox" ng-click="toggleCheck()" /> Marcar/Desmarcar todos</div>
             </div>
             <div class="row">
                 <div class="col-md-2">&nbsp;</div>
@@ -86,7 +95,7 @@
               </div>
             <div class="row" ng-repeat="func in funcionarios">
               <div class="row" ng-class-odd="'silverRow'" ng-class-even="'whiteRow'">
-                <div class="col-md-2"><input type="checkbox" ng-model="func.selected" /></div>
+                <div class="col-md-2"><input type="checkbox" class="biggerCheckbox" ng-model="func.selected" /></div>
                 <div class="col-md-5 lista">{{func.nome}}</div>
                 <div class="col-md-1"></div>
                 <div class="col-md-2 text-right lista">{{formatBR(func.total)}}</div>
