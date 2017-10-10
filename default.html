@@ -22,44 +22,80 @@
       .lista {
         font-size: 20px;
       }
+
+      .silverRow {
+        background-color: #dedede;
+      }
+
+      .whiteRow {
+        background-color: none;
+      }
     </style>
 
   </head>
   <body ng-app="studioPayment">
     <div class="container">
       <div class="row text-center">
-        <h1>Pagamentos Studio Corpo Livre</h1>
+        <h2>Pagamentos Studio Corpo Livre</h2>
       </div>
       <div class="row">&nbsp;</div>
       <div class="row" ng-controller="indexController">
         <div ng-show="showState.main">
           <div class="col-sm-4 text-center" ng-repeat="gym in gyms" >
-            <button class="btn btn-default btn-lg" type="button" ng-click="openList(gym)">{{gym.name}}</button>
+            <button class="btn btn-success btn-lg" type="button" ng-click="openList(gym)">{{gym.name}}</button>
           </div>
         </div>
         <div ng-show="showState.list">
             <div class="row">
-              <div class="col-md-4 text-left"><h2>{{dataState.gym.name}}</h2></div>
-              <div class="col-md-8 text-right"><button class="btn btn-success btn-lg" type="button" ng-click="printData()">&nbsp;&nbsp;&nbsp;Imprimir&nbsp;&nbsp;&nbsp;</button></div>
+                <div class="col-md-2 text-left">&nbsp;</div>
+                <div class="col-md-8 text-center"><h1><strong>&nbsp;&nbsp;{{dataState.gym.name}}&nbsp;&nbsp;</strong></h1></div>
+                <div class="col-md-2 text-right">&nbsp;</div>
+              </div>
+            <div class="row">
+              <div class="col-md-2 text-left"><button class="btn btn-success btn-lg" type="button" ng-click="goHome()"><span class="glyphicon glyphicon-home" title="Selecionar outra unidade" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</button></div>
+              <div class="col-md-8 text-center"><button class="btn btn-info btn-sm" type="button" ng-click="editData()"><span class="glyphicon glyphicon-pencil" title="Editar planilha de valores" aria-hidden="true"></span>&nbsp;Editar</button>&nbsp;
+                <button class="btn btn-info btn-sm" type="button" ng-click="refreshData()"><span class="glyphicon glyphicon-refresh" title="Atualizar lista" aria-hidden="true"></span></button></div>
+              <div class="col-md-2 text-right"><button class="btn btn-success btn-lg" type="button" ng-click="printData(funcionarios)"><span class="glyphicon glyphicon-print" title="Imprimir todos os selecionados" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Imprimir&nbsp;&nbsp;&nbsp;</button></div>
             </div>
             <div class="row">
-              <div class="col-md-3"><input type="checkbox" ng-click="toggleCheck()" /> Marcar/Desmarcar todos</div>
-              <div class="col-md-3">&nbsp;</div>
-              <div class="col-md-3">&nbsp;</div>
-              <div class="col-md-3">&nbsp;</div>
+              <div class="col-md-2">&nbsp;</div>
+              <div class="col-md-5">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
+              <div class="col-md-2">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="col-md-3">&nbsp;</div>
-                <div class="col-md-3">&nbsp;</div>
-                <div class="col-md-3">&nbsp;</div>
-                <div class="col-md-3">&nbsp;</div>
+              <div class="col-md-2">&nbsp;</div>
+              <div class="col-md-5">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
+              <div class="col-md-2">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
+              <div class="col-md-1">&nbsp;</div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"><input type="checkbox" ng-click="toggleCheck()" /> Marcar/Desmarcar todos</div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-5">&nbsp;</div>
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-md-1">&nbsp;</div>
+                <div class="col-md-1">&nbsp;</div>
               </div>
             <div class="row" ng-repeat="func in funcionarios">
-                <div class="col-md-3"><input type="checkbox" ng-model="func.selected" /></div>
-                <div class="col-md-3 lista">{{func.nome}}</div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3 text-right lista">{{formatBR(func.total)}}</div>
-              </div>
+              <div class="row" ng-class-odd="'silverRow'" ng-class-even="'whiteRow'">
+                <div class="col-md-2"><input type="checkbox" ng-model="func.selected" /></div>
+                <div class="col-md-5 lista">{{func.nome}}</div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 text-right lista">{{formatBR(func.total)}}</div>
+                <div class="col-md-2">
+                    <span ng-click="printSingle(func)" class="glyphicon glyphicon-usd" title="Imprimir recibo" aria-hidden="true" style="cursor:pointer"></span>&nbsp;&nbsp;
+                    <span ng-click="printEmpty(func)" class="glyphicon glyphicon-list-alt" title="Imprimir recibo sem valores" aria-hidden="true" style="cursor:pointer"></span>
+                </div>
+              </div> 
+            </div>
         </div>
         <div ng-show="showState.print">
           <div class="row" id="divPrint">

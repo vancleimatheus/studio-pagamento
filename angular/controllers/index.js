@@ -1,19 +1,28 @@
 'use strict';
 app.controller('indexController', ['$scope', '$location', '$window', '$http', '$filter',
     function ($scope, $location, $window, $http, $filter) {
-        $scope.showState = {
-            main: true,
-            list: false,
-            print: false            
-        };
+        
+        $scope.showState = {};
 
         $scope.dataState = {
             gym: null
         }
-
+        
         $scope.gyms = [{name:"Iguaçu", key: '1YSS4rOv5Lw3ScUxRyjXq4xK2GsUZ-KC_vZfF3yw07z0'}, 
-                  {name: "Metropolitan", key: ''}, 
-                  {name: "Água Verde", key: ''}];
+        {name: "Metropolitan", key: ''}, 
+        {name: "Água Verde", key: ''}];
+
+        $scope.goHome = function() {
+            $scope.funcionarios = [];
+
+            $scope.showState = {
+                main: true,
+                list: false,
+                print: false            
+            };                
+        }
+
+        $scope.goHome();
     
         $scope.openList = function(obj) {
             $scope.dataState.gym = obj
@@ -25,18 +34,24 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
             $scope.getData();
         };
 
-        $scope.printData = function() {
-            $scope.showState = {
-                main: false,
-                list: false,
-                print: true
-            };            
+        $scope.editData = function(){
+            var key = $scope.dataState.gym.key;
+            $window.open('https://docs.google.com/spreadsheets/d/' + key + '/edit', '_blank');
+        };
+
+        $scope.refreshData = function() {
+            $scope.funcionarios = [];
+            $scope.openList($scope.dataState.gym);
         }
 
         $scope.formatBR = function(number) {
-            var fNum = 'R$ ' +  $filter('number')(number, 2);
+            if(number !== null && number!==0 && !isNaN(number)) {
+                var fNum = 'R$ ' +  $filter('number')(number, 2);
 
-            return(fNum.replace(',', '').replace('.', ','));
+                return(fNum.replace(',', '').replace('.', ','));
+            } else {
+                return '';
+            }
         }
 
         $scope.funcionarios = [];
@@ -106,42 +121,81 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
             }
         }
 
-        $scope.printData = function()
+        $scope.printSingle = function(func) {
+            var arr = [];
+            arr.push(func);
+            $scope.printFunction(arr);
+        };
+
+        $scope.printEmpty = function(func) {
+            var func = {selected: false,
+                nome: func.nome,
+                modalidade: '',
+                valor: null,
+                numeroaulas: '',
+                dsr: null,
+                inss: null,
+                salariofamilia: null,
+                vale: null,
+                extra: null,
+                transporte: null,
+                total: null
+            };
+
+            $scope.printSingle(func);
+        };
+
+        $scope.printData = function() {
+            var arr = [];
+
+            for(var i=0; i<$scope.funcionarios.length; i++) {
+                if($scope.funcionarios[i].selected)
+                    arr.push($scope.funcionarios[i]);
+            }
+
+            if(arr.length>0)
+                $scope.printFunction(arr);
+            else
+                alert('Por favor selecione um funcionário para a impressão do recibo.');
+        }
+
+        $scope.printFunction = function(arr)
         {
             var mywindow = window.open('', 'PRINT', 'height=400,width=600');
         
             mywindow.document.write('<html><head><title>' + document.title  + '</title>');
             mywindow.document.write('    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">');
+            mywindow.document.write('    <style type="text/css"> td {padding-bottom: 10px;} </style>');
             mywindow.document.write('</head><body><div class="container">');
             
-            for(var i=0; i<$scope.funcionarios.length; i++) {
+            for(var i=0; i<arr.length; i++) {
                 
-                var func = $scope.funcionarios[i];
+                var func = arr[i];
 
-                if(func.selected) {
-                    mywindow.document.write('<table style="width:50%"><tr><td>Nome:</td><td>');
-                    mywindow.document.write(func.nome)
-                    mywindow.document.write('</td></tr><tr><td>Valor:</td><td>');
-                    mywindow.document.write($scope.formatBR(func.valor));
-                    mywindow.document.write('</td></tr><tr><td>Nr. Aulas:</td><td>');
-                    mywindow.document.write(func.numeroaulas);
-                    mywindow.document.write('</td></tr><tr><td>DSR:</td><td>');
-                    mywindow.document.write(func.dsr);
-                    mywindow.document.write('</td></tr><tr><td>INSS:</td><td>');
-                    mywindow.document.write(func.inss);
-                    mywindow.document.write('</td></tr><tr><td>Vale:</td><td>');
-                    mywindow.document.write(func.vale);
-                    mywindow.document.write('</td></tr><tr><td>Extra:</td><td>');
-                    mywindow.document.write(func.extra);
-                    mywindow.document.write('</td></tr><tr><td>V. Trans:</td><td>');
-                    mywindow.document.write(func.transporte);
-                    mywindow.document.write('</td></tr><tr style="font-weight: bold"><td>Total:</td><td>');
-                    mywindow.document.write($scope.formatBR(func.total));
-                    mywindow.document.write('</td></tr><tr><td>&nbsp;</td></tr></table>');
-                }
+                mywindow.document.write('<table style="width:50%"><tr><td>Nome:</td><td>');
+                mywindow.document.write(func.nome)
+                mywindow.document.write('</td></tr><tr><td>Valor:</td><td>');
+                mywindow.document.write($scope.formatBR(func.valor));
+                mywindow.document.write('</td></tr><tr><td>Nr. Aulas:</td><td>');
+                mywindow.document.write(func.numeroaulas);
+                mywindow.document.write('</td></tr><tr><td>DSR:</td><td>');
+                mywindow.document.write($scope.formatBR(func.dsr));
+                mywindow.document.write('</td></tr><tr><td>INSS:</td><td>');
+                mywindow.document.write($scope.formatBR(func.inss));
+                mywindow.document.write('</td></tr><tr><td>Vale:</td><td>');
+                mywindow.document.write($scope.formatBR(func.vale));
+                mywindow.document.write('</td></tr><tr><td>Extra:</td><td>');
+                mywindow.document.write($scope.formatBR(func.extra));
+                mywindow.document.write('</td></tr><tr><td>V. Trans:</td><td>');
+                mywindow.document.write($scope.formatBR(func.transporte));
+                mywindow.document.write('</td></tr><tr style="font-weight: bold"><td>Total:</td><td>');
+                mywindow.document.write($scope.formatBR(func.total));
+                mywindow.document.write('</td></tr><tr><td>&nbsp;</td></tr></table>');
             }
 
             mywindow.document.write('</div></body></html>');
+
+            mywindow.document.write('<script type="text/javascript">window.print();window.close();</script>')
         
             mywindow.document.close(); // necessary for IE >= 10
             mywindow.focus(); // necessary for IE >= 10*/
