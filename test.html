@@ -1,0 +1,120 @@
+<!--<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+    Fora da pagina!<br />
+    <div id='loadDiv'>
+      
+    </div>
+    Fora da pagina!<br /
+  </body>
+</html>
+
+<script>
+  $(document).ready( function() {
+    //$("#loadDiv").load("default.html");
+    load_home();
+  });
+
+  function load_home() {
+     document.getElementById("loadDiv").innerHTML='<object type="text/html" data="default.html" style="width:100%"></object>';
+  }
+</script>-->
+
+
+<html>
+
+<head>
+  <title>Pagamentos Studio Corpo Livre</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style type="text/css">
+    td {
+      padding-bottom: 10px;
+    }
+
+    #valores td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <table style="width:70%">
+      <tbody>
+        <tr style="background-color: silver; border: 1px solid black; font-weight: bold; font-size: 20px">
+          <td colspan="2" style="padding: 10px;" >Recibo de Comissão</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td>Nome da Empresa:</td>
+          <td><strong>Mv Academia de Ginástica Ltda.</strong></td>
+        </tr>
+        <tr>
+          <td>Nome do Funcionário:</td>
+          <td>Bianca</td>
+        </tr>
+        <tr>
+            <td>Período: </td>
+            <td>_______________ à _______________ de 2017</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td colspan="2" style="padding-left:20px">
+          <table id="valores" style="width:100%">
+            <tr>
+              <td>Valor:</td>
+              <td>R$ 23,00 | R$ 18,52</td>
+            </tr>
+            <tr>
+              <td>Nr. Aulas:</td>
+              <td>27 | 35</td>
+            </tr>
+            <tr style="border-top: 2px black solid;font-weight:bold;font-size: 14px;">
+              <td style="padding-top:5px;">Subtotal:</td>
+              <td style="padding-top:5px">R$ 1269,20</td>
+            </tr>
+            <tr>
+              <td>DSR:</td>
+              <td>R$ 313,86</td>
+            </tr>
+            <tr>
+              <td>INSS:</td>
+              <td>R$ 169,55</td>
+            </tr>
+            <tr>
+              <td>Vale:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Extra:</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>V. Trans:</td>
+              <td></td>
+            </tr>
+            <tr style="font-weight: bold">
+              <td>Total:</td>
+              <td>R$ 1752,61</td>
+            </tr>
+          </table>  
+        </td>
+      </tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr>
+          <td>Referente: </td>
+          <td>_____________________________________ </td>
+      </tr>    
+      <tr>
+          <td>Curitiba, 30/10/2017</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp; Ass: ____________________________________ </td>
+      </tr>    
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
