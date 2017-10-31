@@ -8,9 +8,15 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
             gym: null
         }
         
-        $scope.gyms = [{name:"Iguaçu", key: '1YSS4rOv5Lw3ScUxRyjXq4xK2GsUZ-KC_vZfF3yw07z0', razao_social: 'Mv Academia de Ginástica Ltda.'}, 
-        {name: "Metropolitan", key: '1RGsWfmvQ60dEHBS1KUSD8MwlWP-WiSc20FFNhX9SgdM', razao_social: 'Metropolitan Ltda.'}, 
-        {name: "Água Verde", key: '1SNBxj5gwAJda1ZnWz9bObh3JP0Nu1B7sjobhEea0Wes', razao_social: 'Água Verde Ltda.'}];
+        // Dev
+        //$scope.gyms = [{name:"Iguaçu", key: '1YSS4rOv5Lw3ScUxRyjXq4xK2GsUZ-KC_vZfF3yw07z0', razao_social: 'Mv Academia de Ginástica Ltda.'}, 
+        //{name: "Metropolitan", key: '1RGsWfmvQ60dEHBS1KUSD8MwlWP-WiSc20FFNhX9SgdM', razao_social: 'Metropolitan Ltda.'}, 
+        //{name: "Água Verde", key: '1SNBxj5gwAJda1ZnWz9bObh3JP0Nu1B7sjobhEea0Wes', razao_social: 'Água Verde Ltda.'}];
+
+        // Prod
+        $scope.gyms = [{name:"Iguaçu", key: '1PKbrBEoF55whFML4ACSqXrzlHY04wP_utkr5jWNt0pQ', razao_social: 'Mv Academia de Ginástica Ltda.'}, 
+        {name: "Metropolitan", key: '1nc0NYKKTELXw9zjARH32F5zHeRKIPnvfAt1f9jNhmvc', razao_social: 'V Sport Academia de Ginástica Ltda.'}, 
+        {name: "Água Verde", key: '1mivITHfjfFQHLrlA-apeBjWR57lxTB15P_Nt3T7yvKk', razao_social: 'Spaço do Esporte Academia de Ginastica.'}];
 
         $scope.goHome = function() {
             $scope.funcionarios = [];
@@ -188,7 +194,7 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
             mywindow.document.write('<head>');
             mywindow.document.write('<title>Pagamentos Studio Corpo Livre</title>');
             mywindow.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">');
-            mywindow.document.write('<style type="text/css">td {padding-bottom: 10px;} #valores td {border: 1px solid black;padding: 5px;}</style></head><body>');
+            mywindow.document.write('<style type="text/css">td {padding-bottom: 8px;} #valores td {border: 1px solid black;padding: 5px;}</style></head><body>');
             mywindow.document.write('<div class="container">');                
             
             for(var i=0; i<arr.length; i++) {
@@ -205,17 +211,13 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
                 mywindow.document.write(func.nome)
                 mywindow.document.write('</td></tr><tr><td>Período: </td><td>_______________ à _______________ de ');
                 mywindow.document.write(d.getFullYear());
-                mywindow.document.write('</td></tr><tr><td>&nbsp;</td></tr><tr><td colspan="2" style="padding-left:20px">');
+                mywindow.document.write('</td></tr><tr><td colspan="2" style="padding-left:20px">');
                 mywindow.document.write('<table id="valores" style="width:100%"><tr><td>Valor:</td><td>');
                 mywindow.document.write(func.valorFMT);
-                if(func.numeroaulas!=='') {
-                    mywindow.document.write('</td></tr><tr><td>Nr. Aulas:</td><td>');
-                    mywindow.document.write(func.numeroaulas);
-                }
-                if(func.subtotal>0) {
-                    mywindow.document.write('</td></tr><tr style="border-top: 2px black solid;font-weight:bold;font-size: 14px;"><td style="padding-top:5px;">Subtotal:</td><td style="padding-top:5px">');
-                    mywindow.document.write($scope.formatBR(func.subtotal));
-                }
+                mywindow.document.write('</td></tr><tr><td>Nr. Aulas:</td><td>');
+                mywindow.document.write(func.numeroaulas);
+                mywindow.document.write('</td></tr><tr style="border-top: 2px black solid;font-weight:bold;font-size: 14px;"><td style="padding-top:5px;">Subtotal:</td><td style="padding-top:5px">');
+                mywindow.document.write($scope.formatBR(func.subtotal));
                 mywindow.document.write('</td></tr><tr><td>DSR:</td><td>');
                 mywindow.document.write($scope.formatBR(func.dsr));
                 mywindow.document.write('</td></tr><tr><td>INSS:</td><td>');
