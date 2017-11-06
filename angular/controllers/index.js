@@ -194,7 +194,7 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
             mywindow.document.write('<head>');
             mywindow.document.write('<title>Pagamentos Studio Corpo Livre</title>');
             mywindow.document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">');
-            mywindow.document.write('<style type="text/css">td {padding-bottom: 8px;} #valores td {border: 1px solid black;padding: 5px;}</style></head><body>');
+            mywindow.document.write('<style type="text/css">td {padding-bottom: 8px;} #valores td {border: 1px solid black;padding: 5px;} @media all { .page-break	{ display: none; } }  @media print { .page-break	{ display: block; page-break-before: always; } }</style></head><body>');
             mywindow.document.write('<div class="container">');                
             
             for(var i=0; i<arr.length; i++) {
@@ -239,6 +239,10 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
                 mywindow.document.write(' de ' + d.getFullYear());
                 mywindow.document.write('</td><td>&nbsp;&nbsp;&nbsp;&nbsp; Ass: ____________________________________ </td>');
                 mywindow.document.write('</tr></table>');
+
+                if((i+1) % 2 == 0) {
+                    mywindow.document.write('<div class="page-break"></div>');
+                }
 
             }
 
