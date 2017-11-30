@@ -120,7 +120,7 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
           
           funcionario.valorFMT = $scope.formatBR(funcionario.valor);
           funcionario.subtotal = total;
-          funcionario.total = total + funcionario.dsr + funcionario.inss + funcionario.salariofamilia + funcionario.extra + funcionario.transporte - funcionario.vale;
+          funcionario.total = total + funcionario.dsr - funcionario.inss + funcionario.salariofamilia + funcionario.extra + funcionario.transporte - funcionario.vale;
             
         }
   
