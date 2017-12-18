@@ -212,7 +212,7 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
                 mywindow.document.write('</td></tr><tr><td>Período: </td><td>_______________ à _______________ de ');
                 mywindow.document.write(d.getFullYear());
                 mywindow.document.write('</td></tr><tr><td colspan="2" style="padding-left:20px">');
-                mywindow.document.write('<table id="valores" style="width:100%"><tr><td>Valor:</td><td>');
+                mywindow.document.write('<table id="valores" style="width:100%;font-size:14px;"><tr><td>Valor:</td><td>');
                 mywindow.document.write(func.valorFMT);
                 mywindow.document.write('</td></tr><tr><td>Nr. Aulas:</td><td>');
                 mywindow.document.write(func.numeroaulas);
@@ -222,6 +222,8 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
                 mywindow.document.write($scope.formatBR(func.dsr));
                 mywindow.document.write('</td></tr><tr><td>INSS:</td><td>');
                 mywindow.document.write($scope.formatBR(func.inss));
+                mywindow.document.write('</td></tr><tr><td>Salário Família:</td><td>');
+                mywindow.document.write($scope.formatBR(func.salariofamilia));
                 mywindow.document.write('</td></tr><tr><td>Vale:</td><td>');
                 mywindow.document.write($scope.formatBR(func.vale));
                 mywindow.document.write('</td></tr><tr><td>Extra:</td><td>');
@@ -231,7 +233,7 @@ app.controller('indexController', ['$scope', '$location', '$window', '$http', '$
                 mywindow.document.write('</td></tr><tr style="font-weight: bold"><td>Total:</td><td>');
                 mywindow.document.write($scope.formatBR(func.total));
                 mywindow.document.write('</td></tr></tr></table></td></tr>');
-                mywindow.document.write('<tr><td>&nbsp;</td></tr><tr><td>Referente: </td>');
+                mywindow.document.write('<tr><td style="font-size:5px;">&nbsp;</td></tr><tr><td>Referente: </td>');
                 mywindow.document.write('<td>_____________________________________ </td></tr><tr>');
                 mywindow.document.write('<td>Curitiba, ');
                 mywindow.document.write(d.getDate());
